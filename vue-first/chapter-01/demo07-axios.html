@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue: Axios 异步通信</title>
+
+    <!--解决闪烁问题-->
+    <style>
+        [v-clock] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--View 层 模板-->
+<div id="vue">
+    <div>{{info.name}}</div>
+    <div>{{info.address.street}}</div>
+    <a v-bind:href="info.url">点我进入博客</a>
+</div>
+
+</body>
+
+<!--1.导入 vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<!--导入 axios -->
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#vue",
+        data() {
+            return {
+                // 请求的返回参数格式，必须和 json 字符串一样
+                info: {
+                    name: null,
+                    address: {
+                        street: null,
+                        city: null,
+                        country: null
+                    },
+                    url: null
+                }
+            }
+        },
+        mounted() {  // 钩子函数：链式编程，ES6 新特性
+            axios.get("../data.json").then(res => (this.info = res.data))
+        }
+    });
+
+</script>
+
+</html>

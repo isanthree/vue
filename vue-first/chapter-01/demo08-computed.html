@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue: 计算属性</title>
+</head>
+<body>
+
+<!--View 层 模板-->
+<div id="vue">
+    <p>currentTime01：{{currentTime01()}}</p>
+    <p>currentTime02：{{currentTime02}}</p>
+</div>
+
+<!--1.导入 vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+
+    let vm = new Vue({
+        el: "#vue",
+        data: {
+            message: "hello, vue"
+        },
+        methods: {
+            currentTime01: function () {
+                return Date.now();  // 返回时间戳
+            }
+        },
+        computed: {  // 计算属性：methods，computed 方法名不能重名，重名字后，只会调用 methods 的方法
+            currentTime02: function () {
+                return Date.now();  // 返回时间戳
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

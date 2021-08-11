@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue: 双向绑定</title>
+</head>
+<body>
+
+<!--View 层 模板-->
+<div id="app">
+    输入的文本 1：<input type="text" v-model="message"/> {{message}}<br/>
+    输入的文本 2：<textarea name="" id="" cols="22" rows="1" v-model="message"></textarea>{{message}}<br/>
+
+    <hr/>
+
+    性别：<input type="radio" name="sex" value="男" v-model="hhh"> 男
+    <input type="radio" name="sex" value="女" v-model="hhh"> 女<br/>
+    <p>
+        选中了：{{hhh}}
+    </p>
+
+    <hr/>
+    下拉框：
+    <select v-model="selected">
+        <option value="" disabled>--请选择--</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>选中了：{{selected}}</span>
+
+</div>
+
+<!--1.导入 Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            message: "123",
+            hhh: '',
+            selected: ''
+        },
+        methods: {  // 方法必须定义在 Vue 的 Method 对象中，v-on：绑定事件
+
+        }
+    });
+
+</script>
+
+</body>
+</html>

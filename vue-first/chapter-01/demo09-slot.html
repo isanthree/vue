@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue: slot 插槽</title>
+</head>
+
+<body>
+<!--View 层 模板-->
+<!--自定义事件名不要用驼峰命名法，可用下划线，不然数据无法渲染，如：title_name（可），titleName（不可） -->
+<div id="app">
+    <todo>
+        <todo-title slot="todo-title" :title_name="title"></todo-title>
+        <todo-items slot="todo-items" v-for="(item, index) in todoItems"
+                    :item="item" :index="index" v-on:remove="removeItems(index)"></todo-items>
+    </todo>
+</div>
+
+<!--1.导入 vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+<script>
+    // slot：插槽，这个组件要定义在前面不然出不来数据
+    Vue.component("todo", {
+        template: '<div>\
+                       <slot name="todo-title"></slot>\
+                       <ul>\
+                           <slot name="todo-items"></slot>\
+                       </ul>\
+                   </div>'
+    });
+
+    Vue.component("todo-title", {
+        // 属性
+        props: ['title_name'],  // name_kk：千万别用驼峰命名法，会出现为知错误
+        template: '<div>{{title_name}}</div>'
+    });
+
+    Vue.component("todo-items", {
+        props: ['item', 'index'],
+        // 只能绑定当前组件的方法
+        template: '<li>{{index}}--{{item}} <button @click="remove">删除</button> </li>',
+        methods: {
+            remove: function (index) {
+                this.$emit('remove', 'index');  // this.$emit()：自定义事件分发
+            }
+        }
+    });
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            title: "语言列表",  // 标题
+            todoItems: ['Java', 'C++', 'Python']  // 列表
+        },
+        methods: {
+            removeItems: function (index) {
+                console.log("删除了 " + this.todoItems[index]);
+                this.todoItems.splice(index, 1);  // 一次删除一个元素
+            }
+        }
+    });
+</script>
+</body>
+</html>

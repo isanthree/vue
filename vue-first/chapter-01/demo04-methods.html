@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue: methods</title>
+</head>
+<body>
+
+<!--View 层 模板-->
+<div id="app">
+    <button v-on:click="sayHi">点击我</button>
+</div>
+
+<!--1.导入 Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello, Vue 前端"
+        },
+        methods: {  // 方法必须定义在 Vue 的 Method 对象中，v-on：绑定事件
+            sayHi: function () {
+                alert(this.message);
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

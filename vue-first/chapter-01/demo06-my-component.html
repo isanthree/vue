@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue: 自定义组件</title>
+</head>
+<body>
+
+<!--View 层 模板-->
+<div id="app">
+    <!--组件：使用 props 属性传递参数-->
+    <hello v-for="item in items" v-bind:hhh="item"></hello> <!--打印出 item-->
+</div>
+
+<!--1.导入 Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+
+<script>
+    // 定义一个 Vue 组件 component
+    Vue.component("hello", {
+        props: ['hhh'],
+        template: '<li>{{hhh}}</li>'
+    })
+
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            items: ["c++", "java", "python"]
+        },
+        methods: {  // 方法必须定义在 Vue 的 Method 对象中，v-on：绑定事件
+
+        }
+    });
+
+</script>
+
+</body>
+</html>

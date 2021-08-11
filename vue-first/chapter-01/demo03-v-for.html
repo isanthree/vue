@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue: </title>
+</head>
+<body>
+
+<!--View 层 模板-->
+<div id="app">
+    <li v-for="(item, index) in items">
+        {{index}}---{{item.message}}
+    </li>
+</div>
+
+<!--1.导入 Vue.js-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            items: [
+                {message: '前端'},
+                {message: 'Vue'},
+                {message: '后端'}
+            ]
+        }
+    });
+
+</script>
+
+</body>
+</html>
